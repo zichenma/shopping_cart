@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<html lang='en' ng-app="myModule">
+<head>
+    <title>Book Shopping Cart</title>
+    <link href="style.css" rel="stylesheet" />
+    <script src="angular.js"></script>
+    <script src="JavaScript.js"></script>
+</head>
+<body ng-controller="CartControler" ng-init='load()'>
+    <div id="wrap">
+        <table>
+            <caption><b>My Books</b></caption>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Qty</th>
+                    <th>UnitPrice</th>
+                    <th>$UnitPrice</th>
+                    <th>Line Total</th>
+                    <th id="value">Total Value: {{total}}</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan="2"><button ng-click="addItem()">New</button></th>
+                    <th colspan="2"> <a href="https://github.com/zichenma/shopping_cart.git" target="_blank">Source Code</a></th>
+                    <th colspan="2"><button ng-click="storeData()">Save</button></th>
+                </tr>
+            </tfoot>
+            <tbody ng-repeat="book in books">
+                <tr id="data">
+                    <td>
+                        <input type="text" name="book title" ng-model="book.title" />
+                    </td>
+                    <td>
+                        <input ng-model="book.qty" size="2">
+                    </td>
+                    <td><input name="unit price" ng-model="book.price" size="6" /></td>
+                    <td>{{book.price| currency}}</td>
+                    <td>{{book.price * book.qty | currency}}</td>
+                    <td>
+                        <button ng-click="removeBook($index)">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--Indicating purpose for the assignment-->
+    <div id="indicator">
+        <h3>This block is only for indicating purpose!</h3>
+        <p><button ng-click="readDataSource()">Read Data Source</button></p>
+        <span id="dataSource"></span>
+        <p><button ng-click="clearDataSource()">Clear Data Source</button></p>
+    </div>
+
+</body>
+</html>
